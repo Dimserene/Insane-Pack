@@ -1,0 +1,72 @@
+[submodule "Mods/Cryptid"]
+	path = Mods/Cryptid
+	url = https://github.com/MathIsFun0/Cryptid/
+[submodule "Mods/Talisman"]
+	path = Mods/Talisman
+	url = https://github.com/Dimserene/Talisman
+[submodule "Mods/The-World-Ends-With-Jimbo"]
+	path = Mods/The-World-Ends-With-Jimbo
+	url = https://github.com/parchmentEngineer/The-World-Ends-With-Jimbo
+[submodule "Mods/Steamodded"]
+	path = Mods/Steamodded
+	url = https://github.com/Steamopollys/Steamodded
+[submodule "Mods/StackedRedSeals"]
+	path = Mods/StackedRedSeals
+	url = https://github.com/cerloCasa/StackedRedSeals
+[submodule "Mods/NotJustYet"]
+	path = Mods/NotJustYet
+	url = https://github.com/Toneblock/balatro-NotJustYet
+[submodule "Mods/Stickers-Always-Shown"]
+	path = Mods/Stickers-Always-Shown
+	url = https://github.com/SirMaiquis/Balatro-Stickers-Always-Shown
+[submodule "Mods/MoreJokerPacks"]
+	path = Mods/MoreJokerPacks
+	url = https://github.com/Samario1/MoreJokerPacks
+[submodule "Mods/Handy"]
+	path = Mods/Handy
+	url = https://github.com/SleepyG11/HandyBalatro/
+[submodule "Mods/Galdur"]
+	path = Mods/Galdur
+	url = https://github.com/Eremel/Galdur
+[submodule "Mods/Fusion-Jokers"]
+	path = Mods/Fusion-Jokers
+	url = https://github.com/Dimserene/Fusion-Jokers/
+[submodule "Mods/AncientJokerFix"]
+	path = Mods/AncientJokerFix
+	url = https://github.com/gabepesco/BalatroAncientJokerFix
+[submodule "Mods/Aure-Spectral"]
+	path = Mods/Aure-Spectral
+	url = https://github.com/SDM0/Aure-Spectral/
+[submodule "Mods/Betmma-mods"]
+	path = Mods/Betmma-mods
+	url = https://github.com/betmma/my_balatro_mods/
+[submodule "Mods/BetterIllusion"]
+	path = Mods/BetterIllusion
+	url = https://github.com/rileyinman/BetterIllusion
+[submodule "Mods/BonusBlinds"]
+	path = Mods/BonusBlinds
+	url = https://github.com/Dimserene/BonusBlinds
+[submodule "Mods/Brainstorm"]
+	path = Mods/Brainstorm
+	url = https://github.com/Dimserene/Brainstorm
+[submodule "Mods/Cartomancer"]
+	path = Mods/Cartomancer
+	url = https://github.com/stupxd/Cartomancer
+[submodule "Mods/DebugPlus"]
+	path = Mods/DebugPlus
+	url = https://github.com/Dimserene/DebugPlus/
+[submodule "Mods/FoldButton"]
+	path = Mods/FoldButton
+	url = https://github.com/happinyz/BalatroFoldButton
+[submodule "Mods/JokerDisplay"]
+	path = Mods/JokerDisplay
+	url = https://github.com/nh6574/JokerDisplay
+[submodule "Mods/JokerDisplayModSupport"]
+	path = Mods/JokerDisplayModSupport
+	url = https://github.com/nh6574/JokerDisplayModSupport/
+[submodule "Mods/JokerSellValue"]
+	path = Mods/JokerSellValue
+	url = https://github.com/OppositeWolf770/JokerSellValue/
+[submodule "Mods/Trance"]
+	path = Mods/Trance
+	url = https://github.com/Dimserene/Trance/
