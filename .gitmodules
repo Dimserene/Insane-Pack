@@ -64,3 +64,6 @@
 [submodule "Mods/Jeantoine"]
 	path = Mods/Jeantoine
 	url = https://github.com/Kaishi130/Jeantoine
+[submodule "Mods/Aure-Spectral"]
+	path = Mods/Aure-Spectral
+	url = https://github.com/SDM0/Aure-Spectral
