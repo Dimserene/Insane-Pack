@@ -34,9 +34,6 @@
 [submodule "Mods/AncientJokerFix"]
 	path = Mods/AncientJokerFix
 	url = https://github.com/gabepesco/BalatroAncientJokerFix
-[submodule "Mods/Aure-Spectral"]
-	path = Mods/Aure-Spectral
-	url = https://github.com/SDM0/Aure-Spectral/
 [submodule "Mods/Betmma-mods"]
 	path = Mods/Betmma-mods
 	url = https://github.com/betmma/my_balatro_mods/
@@ -55,9 +52,6 @@
 [submodule "Mods/DebugPlus"]
 	path = Mods/DebugPlus
 	url = https://github.com/Dimserene/DebugPlus/
-[submodule "Mods/FoldButton"]
-	path = Mods/FoldButton
-	url = https://github.com/happinyz/BalatroFoldButton
 [submodule "Mods/JokerDisplay"]
 	path = Mods/JokerDisplay
 	url = https://github.com/nh6574/JokerDisplay
@@ -67,6 +61,6 @@
 [submodule "Mods/JokerSellValue"]
 	path = Mods/JokerSellValue
 	url = https://github.com/OppositeWolf770/JokerSellValue/
-[submodule "Mods/Trance"]
-	path = Mods/Trance
-	url = https://github.com/Dimserene/Trance/
+[submodule "Mods/Jeantoine"]
+	path = Mods/Jeantoine
+	url = https://github.com/Kaishi130/Jeantoine
