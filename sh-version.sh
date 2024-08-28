@@ -21,7 +21,7 @@ prompt_any_key() {
 }
 
 # Initial prompt to continue or quit
-prompt_to_continue "Do you want to update Inane-Pack?"
+prompt_to_continue "Do you want to update Insane-Pack?"
 
 # Pull the latest changes from the remote repository
 git pull
