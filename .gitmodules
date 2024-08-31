@@ -40,9 +40,6 @@
 [submodule "Mods/BonusBlinds"]
 	path = Mods/BonusBlinds
 	url = https://github.com/Dimserene/BonusBlinds
-[submodule "Mods/Brainstorm"]
-	path = Mods/Brainstorm
-	url = https://github.com/Dimserene/Brainstorm
 [submodule "Mods/Cartomancer"]
 	path = Mods/Cartomancer
 	url = https://github.com/stupxd/Cartomancer
