@@ -30,10 +30,11 @@ pattern = "elseif context.individual then"
 position = "after"
 payload = '''if context.cardarea == G.play then
 	if self.edition and self.edition.jen_wee and context.other_card:get_id() == 2 then
-		card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_upgrade_ex'), colour = G.C.FILTER})
 		self.edition.twos_scored = (self.edition.twos_scored or 0) + 1
-		card_eval_status_text(self, 'extra', nil, nil, nil, {message = tostring(100 + (8*self.edition.twos_scored)) .. '%', colour = G.C.FILTER})
+		card_eval_status_text(self, 'extra', nil, nil, nil, {message = localize('k_upgrade_ex') .. " : " .. (tostring(100 + (8*self.edition.twos_scored)) .. '%'), colour = G.C.DARK_EDITION})
+		self:remove_from_deck()
 		cry_misprintize(self, {min = 1 + (0.08 * self.edition.twos_scored),max = 1 + (0.08 * self.edition.twos_scored)})
+		self:add_to_deck()
 	end
 end'''
 match_indent = true
@@ -47,6 +48,9 @@ payload = '''if not self.originalsize then self.originalsize = {self.T.w, self.T
 if cardTable.edition and cardTable.edition.jen_wee then
 	self.T.w = self.T.w / Jen.config.wee_sizemod
 	self.T.h = self.T.h / Jen.config.wee_sizemod
+elseif cardTable.edition and cardTable.edition.jen_jumbo then
+	self.T.w = self.T.w * Jen.config.wee_sizemod
+	self.T.h = self.T.h * Jen.config.wee_sizemod
 end
 self.VT.h = self.T.h'''
 match_indent = true

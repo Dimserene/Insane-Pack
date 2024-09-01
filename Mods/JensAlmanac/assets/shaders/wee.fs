@@ -19,7 +19,7 @@ vec4 dissolve_mask(vec4 final_pixel, vec2 texture_coords, vec2 uv);
 
 vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords )
 {
-	if (wee.x > 0) {
+	if (wee.x > 0 || wee.x < 0) {
 		return vec4(0.);
 	}
 
