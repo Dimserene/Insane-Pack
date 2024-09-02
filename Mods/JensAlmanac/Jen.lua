@@ -4,11 +4,11 @@
 --- MOD_ID: jen
 --- MOD_AUTHOR: [jenwalter666]
 --- MOD_DESCRIPTION: Pandemonium and darkness incarnate.
---- PRIORITY: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+--- PRIORITY: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 --- BADGE_COLOR: 3c3cff
 --- PREFIX: jen
---- VERSION: 0.0.5~pre1
---- DEPENDENCIES: [Talisman>=2.0.0-beta6, Cryptid>=0.5.0~pre2, incantation>=0.5.0, Steamodded>=1.0.0~ALPHA-0828b]
+--- VERSION: 0.0.6
+--- DEPENDENCIES: [JenLib, Talisman>=2.0.0-beta6, Cryptid>=0.5.0~pre2, incantation>=0.5.0, Steamodded>=1.0.0~ALPHA-0828b]
 --- CONFLICTS: [fastsc]
 --- LOADER_VERSION_GEQ: 1.0.0
 
@@ -83,7 +83,7 @@ end
 local gsp = get_starting_params
 function get_starting_params()
 	newTable = gsp()
-	newTable.consumable_slots = newTable.consumable_slots + 498
+	newTable.consumable_slots = newTable.consumable_slots + 8
 	return newTable
 end
 
@@ -94,12 +94,7 @@ table.insert(IncantationAddons.BulkUse, 'jen_tokens')
 AurinkoAddons.jen_wee = function(card, hand, instant, amount)
 	if card and not card.playing_card then
 		local twos = {}
-		for k, v in pairs(G.deck.cards) do
-			if v:get_id() == 2 then
-				table.insert(twos, v)
-			end
-		end
-		for k, v in pairs(G.hand.cards) do
+		for k, v in pairs(G.playing_cards) do
 			if v:get_id() == 2 then
 				table.insert(twos, v)
 			end
@@ -113,36 +108,28 @@ AurinkoAddons.jen_wee = function(card, hand, instant, amount)
 	end
 end
 
+AurinkoAddons.jen_jumbo = function(card, hand, instant, amount)
+	if card and not card.playing_card then
+		local akqjs = {}
+		for k, v in pairs(G.playing_cards) do
+			if v:get_id() > 10 then
+				table.insert(akqjs, v)
+			end
+		end
+		if #akqjs > 0 then
+			card_eval_status_text(card, 'extra', nil, nil, nil, {message = #akqjs .. 'x AKQJs', colour = G.C.GREEN})
+			for k, akqj in pairs(akqjs) do
+				level_up_hand(akqj, hand, instant, amount)
+			end
+		end
+	end
+end
+
 G.FUNCS.isomeganumenabled = function(e)
 	if Big and Big.arrow then
 		return true
 	end
 	return false
-end
-
-function get_all_playing_cards()
-	local cards = {}
-	if #G.hand.cards > 0 then
-		for k, v in pairs(G.hand.cards) do
-			table.insert(cards, v)
-		end
-	end
-	if #G.discard.cards > 0 then
-		for k, v in pairs(G.discard.cards) do
-			table.insert(cards, v)
-		end
-	end
-	if #G.deck.cards > 0 then
-		for k, v in pairs(G.deck.cards) do
-			table.insert(cards, v)
-		end
-	end
-	return cards
-end
-
-function count_playing_cards()
-	if not G.hand or not G.discard or not G.deck then return 0 end
-	return #G.hand.cards + #G.discard.cards + #G.deck.cards
 end
 
 function bulk_sell_cards(cards, dontcalc, include_eternal)
@@ -191,61 +178,12 @@ function Card:sell_card_jokercalc()
 	end
 end
 
---{string = '', colours = {G.C.WHITE}, rotate = 1,shadow = true, bump = true,float=true, scale = 0.9, pop_in = 1.5/G.SPEEDFACTOR, pop_in_rate = 1.5*G.SPEEDFACTOR}
-
-function Card:add_dynatext(top, bottom, delay)
-	if self.jen_alreadyhasdynatext then self:remove_dynatext() end
-	G.E_MANAGER:add_event(Event({trigger = 'after', delay = delay or 0.4, func = function()
-		if top then
-			top_dynatext = DynaText(top)
-			self.children.jen_topdyna = UIBox{definition = {n = G.UIT.ROOT, config = {align = 'tm', r = 0.15, colour = G.C.CLEAR, padding = 0.15}, nodes = {{n = G.UIT.O, config = {object = top_dynatext}}}},config = {align="tm", offset = {x=0,y=0},parent = self}}
-		end
-		if bottom then
-			bot_dynatext = DynaText(bottom)
-			self.children.jen_botdyna = UIBox{definition = {n = G.UIT.ROOT, config = {align = 'tm', r = 0.15, colour = G.C.CLEAR, padding = 0.15}, nodes = {{n = G.UIT.O, config = {object = bot_dynatext}}}},config = {align="bm", offset = {x=0,y=0},parent = self}}
-		end
-		self.jen_alreadyhasdynatext = true
-	return true end }))
-end
-
-function Card:remove_dynatext(delay, speed)
-	if self.jen_alreadyhasdynatext then
-		G.E_MANAGER:add_event(Event({trigger = 'after', delay = delay or 0.5, func = function()
-			if self.children.jen_topdyna then
-				self.children.jen_topdyna.definition.nodes[1].config.object:pop_out(speed or 4)
-			end
-			if self.children.jen_botdyna then
-				self.children.jen_botdyna.definition.nodes[1].config.object:pop_out(speed or 4)
-			end
-		return true end }))
-		G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.5, func = function()
-			if self.children.jen_topdyna then
-				self.children.jen_topdyna:remove()
-				self.children.jen_topdyna = nil
-			end
-			if self.children.jen_botdyna then
-				self.children.jen_botdyna:remove()
-				self.children.jen_botdyna = nil
-			end
-			self.jen_alreadyhasdynatext = nil
-		return true end }))
-	end
-end
-
 function noretriggers(context)
 	return not context.retrigger_joker_check and not context.retrigger_joker
 end
 
 for i = 1, Jen.config.ante_polytate do
 	Jen.config.blind_scalar[i] = (1 + (Jen.config.scalar_base + (i/Jen.config.scalar_additivedivisor))) ^ (i * Jen.config.scalar_exponent)
-end
-
-function Card:spritepos(child, X, Y)
-	if self.children[child] then
-		if self.children[child].set_sprite_pos then
-			self.children[child]:set_sprite_pos({x = X, y = Y})
-		end
-	end
 end
 
 local function batchfind(needle, haystack)
@@ -255,40 +193,6 @@ local function batchfind(needle, haystack)
 		if type(v) == 'string' and v == needle then return true end
 	end
 	return false
-end
-
-local function round( num, idp )
-
-	local mult = 10 ^ ( idp or 0 )
-	return math.floor( num * mult + 0.5 ) / mult
-
-end
-
-local function in_booster()
-	return (
-		G.STATE == G.STATES.TAROT_PACK
-		or G.STATE == G.STATES.PLANET_PACK
-		or G.STATE == G.STATES.SPECTRAL_PACK
-		or G.STATE == G.STATES.STANDARD_PACK
-		or G.STATE == G.STATES.BUFFOON_PACK
-		or G.STATE == G.STATES.SMODS_BOOSTER_OPENED
-	)
-end
-
-local function bn(number)
-	return type(number) == 'table' and number or type(number) == 'number' and Big:create(number) or Big:create(0)
-end
-
-function Card:norank()
-	return self.ability.name == 'Stone Card' or self.config.center.no_rank
-end
-
-function Card:nosuit()
-	return self.ability.name == 'Stone Card' or self.config.center.no_suit
-end
-
-function Card:norankorsuit()
-	return self:norank() or self:nosuit()
 end
 
 function lvupallhands(amnt, card, fast)
@@ -330,7 +234,7 @@ function Card:apply_cumulative_levels(hand)
 end
 
 local function change_blind_size(newsize)
-	newsize = bn(newsize)
+	newsize = to_big(newsize)
 	G.GAME.blind.chips = newsize
 	G.E_MANAGER:add_event(Event({func = function()
 		G.GAME.blind.chip_text = number_format(newsize)
@@ -404,24 +308,6 @@ end
 
 local function hasgodsmarble()
 	return #SMODS.find_card('j_jen_godsmarble') > 0
-end
-
-local function round( num, idp )
-
-	local mult = 10 ^ ( idp or 0 )
-	return math.floor( num * mult + 0.5 ) / mult
-
-end
-
-local function deepCopy(obj, seen)
-    if type(obj) ~= 'table' then return obj end
-    if seen and seen[obj] then return seen[obj] end
-  
-    local s = seen or {}
-    local res = {}
-    s[obj] = res
-    for k, v in pairs(obj) do res[deepCopy(k, s)] = deepCopy(v, s) end
-    return setmetatable(res, getmetatable(obj))
 end
 
 local function play_sound_q(sound, per, vol)
@@ -681,84 +567,10 @@ local omegatranscendent = function(self, card, badges)
 	badges[#badges + 1] = create_badge('O M E G A T R A N S C E N D E N T', G.C.BLACK, G.C.jen_RGB, 3.25)
 end
 
-local function chance(name, probability, absolute)
-	return pseudorandom(name) < (absolute and 1 or G.GAME.probabilities.normal)/probability
-end
-
-local function localecolour(name, r,g,b,a)
-	local N = 'jen_' .. name
-	if not G.ARGS.LOC_COLOURS[N] then
-		G.C[N] = type(r) == 'string' and HEX(r) or {r, g, b, a}
-		G.ARGS.LOC_COLOURS[N] = type(r) == 'string' and HEX(r) or {r, g, b, a}
-	end
-	return N
-end
-
 --MISCELLANEOUS
-
-local function delay_realtime(time, queue)
-    G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-		timer = 'REAL',
-        delay = time or 1,
-        func = function()
-           return true
-        end
-    }), queue)
-end
-
-local function abletouseconsumables()
-	return not (((G.play and #G.play.cards > 0) or (G.CONTROLLER.locked) or (G.GAME.STOP_USE and G.GAME.STOP_USE > 0)) and G.STATE ~= G.STATES.HAND_PLAYED and G.STATE ~= G.STATES.DRAW_TO_HAND and G.STATE ~= G.STATES.PLAY_TAROT)
-end
 
 local function abletouseabilities()
 	return abletouseconsumables() and not in_booster()
-end
-
-local function scoringcard(context)
-	return context.cardarea and context.cardarea == G.play and not context.before and not context.after and not context.repetition
-end
-
-function get_favourite_hand()
-	local chosen_hand = 'High Card'
-	local highest_played = 0
-	for _, v in ipairs(G.handlist) do
-		if G.GAME.hands[v].played > highest_played then
-			chosen_hand = v
-			highest_played = G.GAME.hands[v].played
-		end
-	end
-	return chosen_hand
-end
-
-function get_lowest_level_hand()
-	local chosen_hand = 'High Card'
-	local lowest_level = math.huge
-	for _, v in ipairs(G.handlist) do
-		if G.GAME.hands[v].level <= lowest_level then
-			chosen_hand = v
-			lowest_level = G.GAME.hands[v].level
-		end
-	end
-	return chosen_hand
-end
-
-function get_random_hand(ignore, seed, allowhidden)
-	local chosen_hand
-	ignore = ignore or {}
-	seed = seed or 'randomhand'
-	if type(ignore) ~= 'table' then ignore = {ignore} end
-	while true do
-		chosen_hand = pseudorandom_element(G.handlist, pseudoseed(seed))
-		if G.GAME.hands[chosen_hand].visible or allowhidden then
-			local safe = true
-			for _, v in pairs(ignore) do
-				if v == chosen_hand then safe = false end
-			end
-			if safe then break end
-		end
-	end
-	return chosen_hand
 end
 
 --CONSUMABLE TYPES
@@ -841,7 +653,6 @@ local shaders = {
 	'missingtexture',
 	'prismatic',
 	'polygloss',
-	'noisy',
 	'ink',
 	'strobe',
 	'sequin',
@@ -858,11 +669,21 @@ local shaders = {
 
 local shaders2 = {
 	'bloodfoil',
-	'cosmic'
+	'cosmic',
+	'splatoon',
+	'shaderpack_1',
+	'shaderpack_3',
+	'shaderpack_4',
+	'cosmicsparkles_magenta',
+	'cosmicsparkles_red',
+	'cosmicsparkles_yellow',
+	'hell',
+	'wtfwave'
 }
 
 local shaders3 = {
-	'wee'
+	'wee',
+	'jumbo'
 }
 
 for k, v in pairs(shaders) do
@@ -879,6 +700,64 @@ for k, v in pairs(shaders3) do
 end
 
 --EDITIONS
+
+SMODS.Edition({
+    key = "dithered",
+    loc_txt = {
+        name = "Dithered",
+        label = "Dithered",
+        text = {
+            "{C:red}#1#{} Chips",
+            "{C:mult}+#2#{} Mult",
+			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
+        }
+    },
+    discovered = true,
+    unlocked = true,
+    shader = 'dithered',
+    config = {chips = -25, mult = 33},
+	sound = {
+		sound = 'jen_e_dithered',
+		per = 1,
+		vol = 0.6
+	},
+    in_shop = true,
+    weight = 8,
+    extra_cost = 2,
+    apply_to_float = false,
+    loc_vars = function(self)
+        return {vars = {self.config.chips, self.config.mult}}
+    end
+})
+
+SMODS.Edition({
+    key = "sharpened",
+    loc_txt = {
+        name = "Sharpened",
+        label = "Sharpened",
+        text = {
+            "{C:chips}+#1#{} Chips",
+            "{C:red}#2#{} Mult",
+			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
+        }
+    },
+    discovered = true,
+    unlocked = true,
+    shader = 'sharpened',
+    config = {chips = 333, mult = -5},
+	sound = {
+		sound = 'jen_e_sharpened',
+		per = 1.2,
+		vol = 0.6
+	},
+    in_shop = true,
+    weight = 8,
+    extra_cost = 2,
+    apply_to_float = false,
+    loc_vars = function(self)
+        return {vars = {self.config.chips, self.config.mult}}
+    end
+})
 
 SMODS.Edition({
     key = "prismatic",
@@ -977,6 +856,8 @@ SMODS.Edition({
     end,
 })
 
+local wee_lookout = {'Default', 'Enhanced'}
+
 SMODS.Edition({
     key = "wee",
     loc_txt = {
@@ -996,6 +877,31 @@ SMODS.Edition({
 			"{C:inactive,E:1,s:0.7}Haha, look; it's tiny!{}"
         }
     },
+	on_apply = function(card)
+		G.E_MANAGER:add_event(Event({blocking = false, blockable = false, func = function()
+				card:hard_set_T(card.T.x, card.T.y, card.T.w / Jen.config.wee_sizemod, card.T.h / Jen.config.wee_sizemod)
+				remove_all(card.children)
+				card.children = {}
+				card.children.shadow = Moveable(0, 0, 0, 0)
+				card:set_sprites(card.config.center, batchfind((card.ability or {}).set or '', wee_lookout) and card.config.card)
+		return true end}))
+	end,
+	on_remove = function(card)
+		G.E_MANAGER:add_event(Event({blocking = false, blockable = false, func = function()
+				card:hard_set_T(card.T.x, card.T.y, card.T.w * Jen.config.wee_sizemod, card.T.h * Jen.config.wee_sizemod)
+				remove_all(card.children)
+				card.children = {}
+				card.children.shadow = Moveable(0, 0, 0, 0)
+				card:set_sprites(card.config.center, batchfind((card.ability or {}).set or '', wee_lookout) and card.config.card)
+		return true end}))
+		if card.added_to_deck then
+			card:invokefunc('remove_from_deck', card)
+		end
+		cry_misprintize(card, {min = (G.GAME.modifiers.cry_misprint_min or 1),max = (G.GAME.modifiers.cry_misprint_max or 1)})
+		if card.added_to_deck then
+			card:invokefunc('add_to_deck', card)
+		end
+	end,
     shader = false,
     discovered = true,
     unlocked = true,
@@ -1007,7 +913,71 @@ SMODS.Edition({
 	},
     in_shop = true,
     weight = 4,
-    extra_cost = 8,
+    extra_cost = 5,
+    apply_to_float = false,
+	get_weight = function(self)
+        return G.GAME.edition_rate * self.weight
+    end,
+})
+
+SMODS.Edition({
+    key = "jumbo",
+    loc_txt = {
+        name = "Jumbo",
+        label = "Jumbo",
+        text = {
+			"{C:tarot,E:1,s:1.2}Legendary Edition{}",
+			"All card values are",
+			"{C:attention}multiplied{} by {C:attention}100{}",
+			"{C:inactive}(If possible){}",
+			"{C:inactive,E:1,s:0.7}Whoa, it's huge!!{}"
+        }
+    },
+	on_apply = function(card)
+		G.E_MANAGER:add_event(Event({blocking = false, blockable = false, func = function()
+				card:hard_set_T(card.T.x, card.T.y, card.T.w * Jen.config.wee_sizemod, card.T.h * Jen.config.wee_sizemod)
+				remove_all(card.children)
+				card.children = {}
+				card.children.shadow = Moveable(0, 0, 0, 0)
+				card:set_sprites(card.config.center, batchfind((card.ability or {}).set or '', wee_lookout) and card.config.card)
+		return true end}))
+		local obj = card.config.center
+		if card.added_to_deck then
+			card:invokefunc('remove_from_deck', card)
+		end
+		cry_misprintize(card, {min = 100*(G.GAME.modifiers.cry_misprint_min or 1),max = 100*(G.GAME.modifiers.cry_misprint_max or 1)})
+		if card.added_to_deck then
+			card:invokefunc('add_to_deck', card)
+		end
+	end,
+	on_remove = function(card)
+		G.E_MANAGER:add_event(Event({blocking = false, blockable = false, func = function()
+				card:hard_set_T(card.T.x, card.T.y, card.T.w / Jen.config.wee_sizemod, card.T.h / Jen.config.wee_sizemod)
+				remove_all(card.children)
+				card.children = {}
+				card.children.shadow = Moveable(0, 0, 0, 0)
+				card:set_sprites(card.config.center, batchfind((card.ability or {}).set or '', wee_lookout) and card.config.card)
+		return true end}))
+		if card.added_to_deck then
+			card:invokefunc('remove_from_deck', card)
+		end
+		cry_misprintize(card, {min = (G.GAME.modifiers.cry_misprint_min or 1),max = (G.GAME.modifiers.cry_misprint_max or 1)})
+		if card.added_to_deck then
+			card:invokefunc('add_to_deck', card)
+		end
+	end,
+    shader = false,
+    discovered = true,
+    unlocked = true,
+    config = {twos_scored = 0},
+	sound = {
+		sound = 'jen_e_jumbo',
+		per = 1,
+		vol = 0.5
+	},
+    in_shop = true,
+    weight = 0.8,
+    extra_cost = 12,
     apply_to_float = false,
 	get_weight = function(self)
         return G.GAME.edition_rate * self.weight
@@ -1334,8 +1304,7 @@ SMODS.Edition({
         name = "Polygloss",
         label = "Polygloss",
         text = {
-            "{C:money}+$#1#{} when this",
-            "card is scored",
+            "Generates {C:money}+$#1#{}",
 			'{C:dark_edition,s:0.7,E:2}Shader by : knockback1{}'
         }
     },
@@ -1365,9 +1334,8 @@ SMODS.Edition({
         text = {
 			"{C:red,E:1,s:1.2}Rare Edition{}",
 			" ",
-            "Earns {C:money}$#1#{} when this",
-            "card is scored",
-			"Card has an {C:red}EXTREME{C:money} buy & sell value{}",
+            "Generates {C:money}$#1#{}",
+			"Card has an {C:red}extreme{C:money} buy & sell value{}",
 			'{C:dark_edition,s:0.7,E:2}Shader by : knockback1{}'
         }
     },
@@ -1395,8 +1363,8 @@ SMODS.Edition({
         name = "Chromatic",
         label = "Chromatic",
         text = {
-            "{C:chips}+#1# Chips{}",
-            "{C:mult}+#2# Mult{}",
+            "{C:chips}+#1#{} Chips",
+            "{C:mult}+#2#{} Mult",
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
@@ -1451,66 +1419,6 @@ local random_consumabletypes = {
 	'Tarot',
 	'Spectral'
 }
-
---dithered effect is currently placeholder until i can figure out how to make it spawn consumables on scoring
-
-SMODS.Edition({
-    key = "dithered",
-    loc_txt = {
-        name = "Dithered",
-        label = "Dithered",
-        text = {
-            "{C:red}#1#{} Chips",
-            "{C:mult}+#2#{} Mult",
-			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
-        }
-    },
-    discovered = true,
-    unlocked = true,
-    shader = 'dithered',
-    config = {chips = -25, mult = 33},
-	sound = {
-		sound = 'jen_e_dithered',
-		per = 1,
-		vol = 0.6
-	},
-    in_shop = true,
-    weight = 8,
-    extra_cost = 2,
-    apply_to_float = false,
-    loc_vars = function(self)
-        return {vars = {self.config.chips, self.config.mult}}
-    end
-})
-
-SMODS.Edition({
-    key = "sharpened",
-    loc_txt = {
-        name = "Sharpened",
-        label = "Sharpened",
-        text = {
-            "{C:chips}+#1#{} Chips",
-            "{C:red}#2#{} Mult",
-			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
-        }
-    },
-    discovered = true,
-    unlocked = true,
-    shader = 'sharpened',
-    config = {chips = 333, mult = -5},
-	sound = {
-		sound = 'jen_e_sharpened',
-		per = 1.2,
-		vol = 0.6
-	},
-    in_shop = true,
-    weight = 8,
-    extra_cost = 2,
-    apply_to_float = false,
-    loc_vars = function(self)
-        return {vars = {self.config.chips, self.config.mult}}
-    end
-})
 
 SMODS.Edition({
     key = "reversed",
@@ -1875,33 +1783,6 @@ end
 --ENHANCEMENTS
 
 SMODS.Enhancement {
-	key = 'astro',
-	loc_txt = {
-		name = 'Astro Card',
-		text = {
-			'When scored, create a random {C:planet}Planet{} card',
-			'{C:inactive}(Must have room){}'
-		}
-	},
-	pos = { x = 0, y = 0 },
-	unlocked = true,
-	discovered = true,
-	atlas = 'jenenhance',
-	calculate = function(self, card, context, effect)
-		if scoringcard(context) then
-			G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
-				if G.consumeables.config.card_limit > #G.consumeables.cards then
-					local card2 = create_card('Planet', G.consumeables, nil, nil, nil, nil, nil, 'astro_card')
-					card2:add_to_deck()
-					G.consumeables:emplace(card2)
-				end
-				return true
-			end }))
-		end
-	end
-}
-
-SMODS.Enhancement {
 	key = 'xchip',
 	loc_txt = {
 		name = 'Multichip Card',
@@ -2024,71 +1905,40 @@ local function faceinplay()
 	return qty
 end
 
---[[
-
 SMODS.Enhancement {
-	key = 'canios',
+	key = 'astro',
 	loc_txt = {
-		name = "Canio's Card",
+		name = 'Astro Card',
 		text = {
-			'{X:mult,C:white}x#1#{} Mult per',
-			'{C:attention}face card{} in played hand'
+			'Creates a {C:planet}Planet{} card',
+			'{C:inactive,s:0.6}(Does not require room, but may overflow){}',
+			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
 		}
 	},
-	config = {extra = {mod = 1.5}},
-	pos = { x = 0, y = 1 },
+	pos = { x = 0, y = 0 },
 	unlocked = true,
 	discovered = true,
 	atlas = 'jenenhance',
-    loc_vars = function(self, info_queue, center)
-        return {vars = {center.ability.extra.mod}}
-    end,
 	calculate = function(self, card, context, effect)
-		card.ability.Xmult = (card.ability.extra.mod ^ faceinplay())
+		if scoringcard(context) then
+			G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+					local card2 = create_card('Planet', G.consumeables, nil, nil, nil, nil, nil, 'astro_card')
+					card2:add_to_deck()
+					G.consumeables:emplace(card2)
+				return true
+			end }))
+		end
 	end
 }
-
-local function faceinhand()
-	if not G.hand then return 0 end
-	if not G.hand.cards then return 0 end
-	local qty = 0
-	for k, v in pairs(G.hand.cards) do
-		if v:is_face() then qty = qty + 1 end
-	end
-	return qty
-end
-
-SMODS.Enhancement {
-	key = 'triboulet',
-	loc_txt = {
-		name = "Triboulet's Card",
-		text = {
-			'{X:mult,C:white}x#1#{} Mult per',
-			'{C:attention}King or Queen{} held in hand'
-		}
-	},
-	config = {extra = {mod = 3}},
-	pos = { x = 1, y = 1 },
-	unlocked = true,
-	discovered = true,
-	atlas = 'jenenhance',
-    loc_vars = function(self, info_queue, center)
-        return {vars = {center.ability.extra.mod}}
-    end,
-	calculate = function(self, card, context, effect)
-		card.ability.Xmult = (card.ability.extra.mod ^ faceinplay())
-	end
-}
-
-]]
 
 SMODS.Enhancement {
 	key = 'fortune',
 	loc_txt = {
 		name = 'Fortune Card',
 		text = {
-			'When scored, create a {C:tarot}Tarot{} card',
-			'{C:inactive}(Must have room){}'
+			'Creates a {C:tarot}Tarot{} card',
+			'{C:inactive,s:0.6}(Does not require room, but may overflow){}',
+			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
 		}
 	},
 	pos = { x = 6, y = 0 },
@@ -2098,11 +1948,9 @@ SMODS.Enhancement {
 	calculate = function(self, card, context, effect)
 		if scoringcard(context) then
 			G.E_MANAGER:add_event(Event({trigger = 'after', func = function()
-				if G.consumeables.config.card_limit > #G.consumeables.cards then
-					local card2 = create_card('Tarot', G.consumeables, nil, nil, nil, nil, nil, 'fortune_card')
-					card2:add_to_deck()
-					G.consumeables:emplace(card2)
-				end
+				local card2 = create_card('Tarot', G.consumeables, nil, nil, nil, nil, nil, 'fortune_card')
+				card2:add_to_deck()
+				G.consumeables:emplace(card2)
 				return true
 			end }))
 		end
@@ -2114,8 +1962,9 @@ SMODS.Enhancement {
 	loc_txt = {
 		name = 'Osmium Card',
 		text = {
-			'When scored, create a {C:spectral}Spectral{} card',
-			'{C:inactive}(Must have room){}'
+			'Creates a {C:spectral}Spectral{} card',
+			'{C:inactive,s:0.6}(Does not require room, but may overflow){}',
+			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
 		}
 	},
 	pos = { x = 8, y = 0 },
@@ -2125,11 +1974,9 @@ SMODS.Enhancement {
 	calculate = function(self, card, context, effect)
 		if scoringcard(context) then
 			G.E_MANAGER:add_event(Event({trigger = 'after', func = function()
-				if G.consumeables.config.card_limit > #G.consumeables.cards then
-					local card2 = create_card('Spectral', G.consumeables, nil, nil, nil, nil, nil, 'osmium_card')
-					card2:add_to_deck()
-					G.consumeables:emplace(card2)
-				end
+				local card2 = create_card('Spectral', G.consumeables, nil, nil, nil, nil, nil, 'osmium_card')
+				card2:add_to_deck()
+				G.consumeables:emplace(card2)
 				return true
 			end }))
 		end
@@ -2141,7 +1988,8 @@ SMODS.Enhancement {
 	loc_txt = {
 		name = 'Fizzy Card',
 		text = {
-			'Creates a {C:attention}Double Tag{} when scored'
+			'Creates a {C:attention}Double Tag{}',
+			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
 		}
 	},
 	pos = { x = 8, y = 1 },
@@ -2176,7 +2024,7 @@ SMODS.Enhancement {
 	loc_txt = {
 		name = 'Handy Card',
 		text = {
-			'{C:blue}+1{} hand this round when scored',
+			'{C:blue}+1{} hand this round',
 			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
 		}
 	},
@@ -2192,11 +2040,32 @@ SMODS.Enhancement {
 }
 
 SMODS.Enhancement {
+	key = 'juggler',
+	loc_txt = {
+		name = 'Juggling Card',
+		text = {
+			'{C:attention}+1{} hand size this round',
+			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
+		}
+	},
+	pos = { x = 2, y = 1 },
+	atlas = 'jenenhance',
+	unlocked = true,
+	discovered = true,
+	calculate = function(self, card, context, effect)
+		if scoringcard(context) then
+			G.hand:change_size(1)
+			G.GAME.round_resets.temp_handsize = (G.GAME.round_resets.temp_handsize or 0) + 1
+		end
+	end
+}
+
+SMODS.Enhancement {
 	key = 'tossy',
 	loc_txt = {
 		name = 'Tossy Card',
 		text = {
-			'{C:red}+1{} discard this round when scored',
+			'{C:red}+1{} discard this round',
 			'{C:cry_exotic,s:0.6,E:1}Power Card{}'
 		}
 	},
@@ -3283,7 +3152,7 @@ SMODS.Joker {
 		if context.cardarea == G.play then
 			if context.other_card and not context.other_card:norank() and scoringcard(context) and context.other_card:get_id() == 7 then
 				card_status_text(card, '-7% Blind Size', nil, 0.05*card.T.h, G.C.FILTER, 0.75, 1, 0.6, nil, 'bm', 'generic1')
-				change_blind_size(bn(G.GAME.blind.chips) / bn(1.07))
+				change_blind_size(to_big(G.GAME.blind.chips) / to_big(1.07))
 			end
 		end
 	end
@@ -3651,7 +3520,7 @@ local function numfoodjokers()
 	return amount
 end
 
-local peppino_desc = ((SMODS.Mods['sdm'] or {}).can_load and
+local peppino_desc = ((SMODS.Mods['sdm0sstuff'] or {}).can_load and
 	{
 		'{X:dark_edition,C:red}^x2{C:red} Mult{} for every',
 		'{C:attention}food Joker{} in your possession',
@@ -3960,10 +3829,10 @@ function Card:open()
 	end }))
 end
 
-local rai_desc = ((SMODS.Mods['sdm'] or {}).can_load and
+local rai_desc = ((SMODS.Mods['sdm0sstuff'] or {}).can_load and
 	{
-		'{C:attention}Jokers{} become {C:dark_edition}Negative{}',
-		'when added to possession',
+		'{C:attention}Jokers{} without an edition',
+		'become {C:dark_edition}Negative{} when added to possession',
 		'{X:green,C:white}Synergy:{} {X:jen_RGB,C:white,s:1.5}+^^#1#{C:mult} Mult{}',
 		'for every {X:attention,C:black}Burger{} owned',
 		'{C:inactive}(Currently {X:jen_RGB,C:white,s:1.5}^^#2#{C:inactive}){}',
@@ -3973,8 +3842,8 @@ local rai_desc = ((SMODS.Mods['sdm'] or {}).can_load and
 	}
 or
 	{
-		'{C:attention}Jokers{} become {C:dark_edition}Negative{}',
-		'when added to possession',
+		'{C:attention}Jokers{} without an edition',
+		'become {C:dark_edition}Negative{} when added to possession',
 		' ',
 		'{C:inactive,s:1.8,E:1}I do things.{}',
 		'{C:inactive,s:0.7,E:1}If I do not, then I will spontaneously combust.{}'
@@ -3990,8 +3859,8 @@ SMODS.Joker {
 	pos = { x = 0, y = 0 },
 	soul_pos = { x = 1, y = 0 },
 	config = {extra = {bouigah = 0.88}},
-	cost = 50,
-	rarity = 'cry_exotic',
+	cost = 20,
+	rarity = 4,
 	unlocked = true,
 	discovered = true,
 	blueprint_compat = false,
@@ -4003,7 +3872,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
 		if context.jen_adding_card and not context.blueprint_card then
-			if context.card.ability.set == 'Joker' and not ((context.card or {}).edition or {}).negative then
+			if context.card.ability.set == 'Joker' and not ((context.card or {}).edition or {}) then
 				card_eval_status_text(card, 'extra', nil, nil, nil, {
 					message = context.card.ability.name == 'Burger' and 'Bouigah!' or 'Negation!',
 					colour = G.C.DARK_EDITION,
@@ -4202,7 +4071,8 @@ SMODS.Joker {
 			'{C:inactive}(Currently {X:purple,C:dark_edition}^#1#{C:inactive}){}',
 			' ',
 			"{C:inactive,E:1}I must do what I must-...{}",
-			"{C:inactive,E:1}...-w-wait, was that REALLY my line?{}"
+			"{C:inactive,E:1}...-w-wait, was that REALLY my line?{}",
+			'{C:dark_edition,s:0.7,E:2}Face art by : laviolive{}'
 		}
 	},
 	pos = { x = 0, y = 0 },
@@ -4224,7 +4094,7 @@ SMODS.Joker {
 			local mod = landa_mod()
 			return {
 				message = '^' .. mod .. ' Chips & Mult',
-				Echips_mod = mod,
+				Echip_mod = mod,
 				Emult_mod = mod,
 				colour = G.C.PURPLE,
 				card = card
@@ -5995,7 +5865,7 @@ if FusionJokers then
 									play_sound('talisman_echip')
 									v:juice_up(0.8, 0.5)
 								return true end }))
-								update_hand_text({delay = 1.3}, {chips = '^' .. tostring(round(echips, 3)), StatusText = true})
+								update_hand_text({delay = 1.3}, {chips = '^' .. tostring(round_number(echips, 3)), StatusText = true})
 								G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, func = function()
 									play_sound('multhit1')
 									v:juice_up(0.8, 0.5)
@@ -6010,7 +5880,7 @@ if FusionJokers then
 									play_sound('talisman_emult', 1)
 									v:juice_up(0.8, 0.5)
 								return true end }))
-								update_hand_text({delay = 1.3}, {mult = '^' .. tostring(round(emult, 3)), StatusText = true})
+								update_hand_text({delay = 1.3}, {mult = '^' .. tostring(round_number(emult, 3)), StatusText = true})
 							end
 						end
 					end
@@ -6198,7 +6068,7 @@ if FusionJokers then
 									play_sound('talisman_echip')
 									v:juice_up(0.8, 0.5)
 								return true end }))
-								update_hand_text({delay = 1.3}, {chips = '^' .. tostring(round(echips, 3)), StatusText = true})
+								update_hand_text({delay = 1.3}, {chips = '^' .. tostring(round_number(echips, 3)), StatusText = true})
 								G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, func = function()
 									play_sound('multhit1')
 									v:juice_up(0.8, 0.5)
@@ -6213,7 +6083,7 @@ if FusionJokers then
 									play_sound('talisman_emult', 1)
 									v:juice_up(0.8, 0.5)
 								return true end }))
-								update_hand_text({delay = 1.3}, {mult = '^' .. tostring(round(emult, 3)), StatusText = true})
+								update_hand_text({delay = 1.3}, {mult = '^' .. tostring(round_number(emult, 3)), StatusText = true})
 							end
 						end
 					end
@@ -6392,7 +6262,7 @@ if FusionJokers then
 									play_sound('talisman_echip')
 									v:juice_up(0.8, 0.5)
 								return true end }))
-								update_hand_text({delay = 1.3}, {chips = '^' .. tostring(round(echips, 3)), StatusText = true})
+								update_hand_text({delay = 1.3}, {chips = '^' .. tostring(round_number(echips, 3)), StatusText = true})
 								G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.3, func = function()
 									play_sound('multhit1')
 									v:juice_up(0.8, 0.5)
@@ -6407,7 +6277,7 @@ if FusionJokers then
 									play_sound('talisman_emult', 1)
 									v:juice_up(0.8, 0.5)
 								return true end }))
-								update_hand_text({delay = 1.3}, {mult = '^' .. tostring(round(emult, 3)), StatusText = true})
+								update_hand_text({delay = 1.3}, {mult = '^' .. tostring(round_number(emult, 3)), StatusText = true})
 							end
 						end
 					end
@@ -6440,6 +6310,7 @@ if FusionJokers then
 				'{X:inactive}Energy{} : {C:attention}#1#{C:inactive} / ' .. tostring(nyx_maxenergy*3) .. '{}',
 				'Selling a {C:attention}Joker {C:inactive}(excluding this one){} or {C:attention}consumable{} will',
 				'{C:attention}create a new random one{} of the {C:attention}same type/rarity{}',
+				'{s:0.7}Drag to {C:attention,s:0.7}rightmost{s:0.7} position to manually disable{}',
 				'{C:inactive}(Does not require slots, but may overflow, retains edition){}',
 				'{C:inactive}(Does not work on fusions or jokers better than Exotic){}',
 				' ',
@@ -6783,63 +6654,39 @@ local misprintedition_config = {
 	exponential = 2
 }
 
-function Card:wee_apply(inverse)
-	if not self.originalsize then self.originalsize = {self.T.w, self.T.h} end
-	if inverse then
-		self.T.w = self.T.w * Jen.config.wee_sizemod
-		self.T.h = self.T.h * Jen.config.wee_sizemod
-	else
-		self.T.w = self.T.w / Jen.config.wee_sizemod
-		self.T.h = self.T.h / Jen.config.wee_sizemod
-	end
-end
-
-function Card:wee_revert()
-	if self.originalsize then
-		self.T.w = self.originalsize[1]
-		self.T.h = self.originalsize[2]
-	end
-end
-
 local ser = Card.set_edition
 function Card:set_edition(edition, immediate, silent)
 	if (((self.config or {}).center or {}).set or '') == 'jen_jokerability' and not (edition or {}).negative then
 		return
 	elseif ((self.config or {}).center or {}).edition_immune then
 		local immunity = self.config.center.edition_immune
-		if type(immunity) ~= 'string' or edition[immunity] then
+		if type(immunity) ~= 'string' or (edition or {})[immunity] then
 			card_status_text(card, localize('k_nope_ex'), nil, 0.05*card.T.h, G.C.RED, nil, 0.6, nil, nil, 'bm', 'cancel')
 			return
 		else
-			self:wee_revert()
 			ser(self, edition, immediate, silent)
 			if self.edition then
-				if self.edition.jen_wee or self.edition.jen_jumbo then
-					self:wee_apply(self.edition.jen_jumbo)
-				elseif self.edition.jen_misprint then
+				if self.edition.jen_misprint then
 					self.edition.chips = pseudorandom('misprintedition_1', misprintedition_config.additive[1], misprintedition_config.additive[2])
 					self.edition.mult = pseudorandom('misprintedition_2', misprintedition_config.additive[1], misprintedition_config.additive[2])
-					self.edition.x_chips = 1 + (round(pseudorandom('misprintedition_3'), 2) * (misprintedition_config.multiplicative - 1))
-					self.edition.x_mult = 1 + (round(pseudorandom('misprintedition_4'), 2) * (misprintedition_config.multiplicative - 1))
-					self.edition.e_chips = 1 + (round(pseudorandom('misprintedition_5'), 3) * (misprintedition_config.exponential - 1))
-					self.edition.e_mult = 1 + (round(pseudorandom('misprintedition_6'), 3) * (misprintedition_config.exponential - 1))
+					self.edition.x_chips = 1 + (round_number(pseudorandom('misprintedition_3'), 2) * (misprintedition_config.multiplicative - 1))
+					self.edition.x_mult = 1 + (round_number(pseudorandom('misprintedition_4'), 2) * (misprintedition_config.multiplicative - 1))
+					self.edition.e_chips = 1 + (round_number(pseudorandom('misprintedition_5'), 3) * (misprintedition_config.exponential - 1))
+					self.edition.e_mult = 1 + (round_number(pseudorandom('misprintedition_6'), 3) * (misprintedition_config.exponential - 1))
 				end
 			end
 			self:align()
 		end
 	else
-		self:wee_revert()
 		ser(self, edition, immediate, silent)
 		if self.edition then
-			if self.edition.jen_wee or self.edition.jen_jumbo then
-				self:wee_apply(self.edition.jen_jumbo)
-			elseif self.edition.jen_misprint then
+			if self.edition.jen_misprint then
 				self.edition.chips = pseudorandom('misprintedition_1', misprintedition_config.additive[1], misprintedition_config.additive[2])
 				self.edition.mult = pseudorandom('misprintedition_2', misprintedition_config.additive[1], misprintedition_config.additive[2])
-				self.edition.x_chips = 1 + (round(pseudorandom('misprintedition_3'), 2) * (misprintedition_config.multiplicative - 1))
-				self.edition.x_mult = 1 + (round(pseudorandom('misprintedition_4'), 2) * (misprintedition_config.multiplicative - 1))
-				self.edition.e_chips = 1 + (round(pseudorandom('misprintedition_5'), 3) * (misprintedition_config.exponential - 1))
-				self.edition.e_mult = 1 + (round(pseudorandom('misprintedition_6'), 3) * (misprintedition_config.exponential - 1))
+				self.edition.x_chips = 1 + (round_number(pseudorandom('misprintedition_3'), 2) * (misprintedition_config.multiplicative - 1))
+				self.edition.x_mult = 1 + (round_number(pseudorandom('misprintedition_4'), 2) * (misprintedition_config.multiplicative - 1))
+				self.edition.e_chips = 1 + (round_number(pseudorandom('misprintedition_5'), 3) * (misprintedition_config.exponential - 1))
+				self.edition.e_mult = 1 + (round_number(pseudorandom('misprintedition_6'), 3) * (misprintedition_config.exponential - 1))
 			end
 		end
 		self:align()
@@ -7463,17 +7310,17 @@ SMODS.Consumable {
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
     loc_vars = function(self, info_queue, center)
-        return {vars = {math.min(100, center.ability.extra.destruction * 100), math.ceil(count_playing_cards() * center.ability.extra.destruction)}}
+        return {vars = {math.min(100, center.ability.extra.destruction * 100), math.ceil(#(G.playing_cards or {}) * center.ability.extra.destruction)}}
     end,
 	can_use = function(self, card)
-		return abletouseconsumables() and count_playing_cards() > 1
+		return abletouseconsumables() and #G.playing_cards > 1
 	end,
 	use = function(self, card, area, copier)
 		local tosell = 0
 		local value = 0
 		local targets = {}
-		local count = count_playing_cards()
-		local allcards = get_all_playing_cards()
+		local count = #G.playing_cards
+		local allcards = G.playing_cards
 		if #allcards > 1 then
 			tosell = math.min(count - 1, math.ceil(count * card.ability.extra.destruction))
 			while tosell > 0 do
@@ -7751,7 +7598,7 @@ if (SMODS.Mods.aurinko or {}).can_load then
 			return abletouseconsumables()
 		end,
 		use = function(self, card, area, copier)
-			for k, v in pairs(get_all_playing_cards()) do
+			for k, v in pairs(G.playing_cards) do
 				if v.edition then
 					G.E_MANAGER:add_event(Event({
 						delay = 0.1,
@@ -7878,7 +7725,7 @@ SMODS.Consumable {
 	use = function(self, card, area, copier)
 		local deck_to_consumables = {}
 		local consumables_to_deck = {}
-		for k, v in pairs(get_all_playing_cards()) do
+		for k, v in pairs(G.playing_cards) do
 			if not v.ability.eternal and v.config.center.consumeable then
 				table.insert(deck_to_consumables, v)
 			end
@@ -7997,16 +7844,16 @@ SMODS.Consumable {
 	discovered = true,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
-        return {vars = {math.min(100, center.ability.extra.destruction * 100), math.ceil(count_playing_cards() * center.ability.extra.destruction), center.ability.extra.slots}}
+        return {vars = {math.min(100, center.ability.extra.destruction * 100), math.ceil(#(G.playing_cards or {}) * center.ability.extra.destruction), center.ability.extra.slots}}
     end,
 	can_use = function(self, card)
-		return abletouseconsumables() and count_playing_cards() > 1
+		return abletouseconsumables() and #G.playing_cards > 1
 	end,
 	use = function(self, card, area, copier)
 		local todestroy = 0
 		local targets = {}
-		local count = count_playing_cards()
-		local allcards = get_all_playing_cards()
+		local count = #G.playing_cards
+		local allcards = G.playing_cards
 		if count > 1 then
 			todestroy = math.min(count - 1, math.ceil(count * card.ability.extra.destruction))
 			while todestroy > 0 do
@@ -8547,6 +8394,11 @@ SMODS.Consumable {
 					local xm = 1
 					local xc = 1
 					local em = 1
+					local ec = 1
+					local eem = to_big(1)
+					local eec = to_big(1)
+					local eeem = to_big(1)
+					local eeec = to_big(1)
 					local money = 0
 					local willbreak = -1
 					local predictedrank = v.base.id
@@ -8608,7 +8460,7 @@ SMODS.Consumable {
 								end
 							end
 							predictedrank = predictedrank - 1
-							if (v.ability.name == 'Glass Card' and chance('mining_glass', 4)) or predictedrank < 2 or v.ability.name == 'Stone Card' then
+							if (v.ability.name == 'Glass Card' and chance('mining_glass', 4)) or predictedrank < 2 or v:norank() then
 								willbreak = i
 								levelup = true
 								break
@@ -8662,7 +8514,7 @@ SMODS.Consumable {
 								play_sound('talisman_xchip')
 								v:juice_up(0.8, 0.5)
 							return true end }))
-							update_hand_text({delay = 0}, {chips = 'x' .. tostring(round(xc, 3)), StatusText = true})
+							update_hand_text({delay = 0}, {chips = 'x' .. tostring(round_number(xc, 3)), StatusText = true})
 							G.GAME.hands[hand].chips = G.GAME.hands[hand].chips * xc
 						end
 						if xm > 1 then
@@ -8670,7 +8522,7 @@ SMODS.Consumable {
 								play_sound('multhit2')
 								v:juice_up(0.8, 0.5)
 							return true end }))
-							update_hand_text({delay = 0}, {mult = 'x' .. tostring(round(xm, 3)), StatusText = true})
+							update_hand_text({delay = 0}, {mult = 'x' .. tostring(round_number(xm, 3)), StatusText = true})
 							G.GAME.hands[hand].mult = G.GAME.hands[hand].mult * xm
 						end
 						if em > 1 then
@@ -8678,7 +8530,7 @@ SMODS.Consumable {
 								play_sound('talisman_emult')
 								v:juice_up(0.8, 0.5)
 							return true end }))
-							update_hand_text({delay = 0}, {mult = '^' .. tostring(round(em, 3)), StatusText = true})
+							update_hand_text({delay = 0}, {mult = '^' .. tostring(round_number(em, 3)), StatusText = true})
 							G.GAME.hands[hand].mult = G.GAME.hands[hand].mult ^ em
 						end
 						if money > 0 then
@@ -10227,7 +10079,7 @@ SMODS.Consumable {
 	use = function(self, card, area, copier)
 		local targets = {}
 		if #G.hand.highlighted > 0 then
-			for k, v in pairs(get_all_playing_cards()) do
+			for k, v in pairs(G.playing_cards) do
 				local safe = false
 				if not v.highlighted then
 					for a, b in pairs(G.hand.highlighted) do
@@ -10280,7 +10132,7 @@ SMODS.Consumable {
 	use = function(self, card, area, copier)
 		local targets = {}
 		if #G.hand.highlighted > 0 then
-			for k, v in pairs(get_all_playing_cards()) do
+			for k, v in pairs(G.playing_cards) do
 				local safe = false
 				if not v.highlighted then
 					for a, b in pairs(G.hand.highlighted) do
@@ -10452,7 +10304,7 @@ G.FUNCS.hand_chip_UI_set = function(e)
 end
 
 G.FUNCS.hand_chip_total_UI_set = function(e)
-	if bn(G.GAME.current_round.current_hand.chip_total) < bn(1) then
+	if to_big(G.GAME.current_round.current_hand.chip_total) < to_big(1) then
 		G.GAME.current_round.current_hand.chip_total_text = ''
 	else
 		local new_chip_total_text = number_format(G.GAME.current_round.current_hand.chip_total)
@@ -10460,7 +10312,7 @@ G.FUNCS.hand_chip_total_UI_set = function(e)
 			e.config.object.scale = scale_number(G.GAME.current_round.current_hand.chip_total, 0.95, 100000000)
 			
 			G.GAME.current_round.current_hand.chip_total_text = new_chip_total_text
-			if not G.ARGS.hand_chip_total_UI_set or bn(G.ARGS.hand_chip_total_UI_set) < bn(G.GAME.current_round.current_hand.chip_total) then
+			if not G.ARGS.hand_chip_total_UI_set or to_big(G.ARGS.hand_chip_total_UI_set) < to_big(G.GAME.current_round.current_hand.chip_total) then
 				local comparison = G.GAME.current_round.current_hand.chip_total
 				if type(comparison) == 'number' then
 					comparison = Big:create(comparison)

@@ -128,9 +128,9 @@ pattern = "ambientOrgan1 = {volfunc = function(_prev_volume) return _prev_volume
 position = "after"
 payload = '''
 	jen_ambientSurreal1 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 100)/200*((G.ARGS.score_intensity.ambientSurreal1 or 0) * 1.8) end},
-	jen_ambientSurreal2 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 100)/200*((G.ARGS.score_intensity.ambientSurreal2 or 0) * 2) end},
-	jen_ambientSurreal3 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 100)/200*((G.ARGS.score_intensity.ambientSurreal3 or 0) * 2.2) end},
-	jen_ambientDramatic1 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 100)/200*((G.ARGS.score_intensity.ambientDramatic1 or 0) * 2.4) end},
-	jen_ambientDramatic2 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 100)/200*((G.ARGS.score_intensity.ambientDramatic2 or 0) * 2.6) end},
+	jen_ambientSurreal2 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 110)/200*((G.ARGS.score_intensity.ambientSurreal2 or 0) * 2) end},
+	jen_ambientSurreal3 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 120)/200*((G.ARGS.score_intensity.ambientSurreal3 or 0) * 2.2) end},
+	jen_ambientDramatic1 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 135)/200*((G.ARGS.score_intensity.ambientDramatic1 or 0) * 2.4) end},
+	jen_ambientDramatic2 = {volfunc = function(_prev_volume) return _prev_volume*(1 - dt) + dt*0.6*(G.SETTINGS.SOUND.music_volume + 150)/200*((G.ARGS.score_intensity.ambientDramatic2 or 0) * 2.6) end},
 '''
 match_indent = true
