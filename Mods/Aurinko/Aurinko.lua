@@ -4,10 +4,10 @@
 --- MOD_ID: aurinko
 --- MOD_AUTHOR: [jenwalter666]
 --- MOD_DESCRIPTION: Lets planets naturally appear with editions, applies editions to hands when leveling
---- PRIORITY: 98999999999
+--- PRIORITY: 98999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 --- BADGE_COLOR: 009cff
 --- PREFIX: aurinko
---- VERSION: 0.4.3
+--- VERSION: 0.4.4
 --- LOADER_VERSION_GEQ: 1.0.0
 
 --[[
@@ -396,12 +396,12 @@ end
 local ccr = create_card
 function create_card(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
 	local card = ccr(_type, area, legendary, _rarity, skip_materialize, soulable, forced_key, key_append)
-	local obj = card.config.center
 	G.E_MANAGER:add_event(Event({
 		blocking = false,
 		blockable = false,
 		func = function()
-			if not card.edition and (((_type == 'Planet' or _type == 'Planet_dx') and (obj.aurinko or (card.ability.consumeable and card.ability.consumeable.hand_type))) or AurinkoWhitelist[card.ability.name]) then
+			local obj = card.config.center
+			if not card.edition and (((_type == 'Planet' or _type == 'Planet_dx') and (obj.aurinko or (card.ability.consumeable and card.ability.consumeable.hand_type))) or AurinkoWhitelist[obj.key]) then
 				local edition = poll_edition('edi'..(key_append or '')..tostring(G.GAME.round_resets.ante), math.max(1, math.min(1 + ((G.GAME.round_resets.ante / 2) - 0.5), 10)), true)
 				if edition and not edition.aurinko_blacklist then
 					card:set_edition(edition)
@@ -412,3 +412,4 @@ function create_card(_type, area, legendary, _rarity, skip_materialize, soulable
 	}))
 	return card
 end
+
