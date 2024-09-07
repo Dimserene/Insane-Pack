@@ -52,3 +52,6 @@
 [submodule "Mods/Jeantoine"]
 	path = Mods/Jeantoine
 	url = https://github.com/Kaishi130/Jeantoine
+[submodule "Mods/CardSleeves"]
+	path = Mods/CardSleeves
+	url = https://github.com/larswijn/CardSleeves
