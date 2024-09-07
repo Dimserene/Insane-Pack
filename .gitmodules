@@ -25,9 +25,6 @@
 [submodule "Mods/Fusion-Jokers"]
 	path = Mods/Fusion-Jokers
 	url = https://github.com/Dimserene/Fusion-Jokers/
-[submodule "Mods/Betmma-mods"]
-	path = Mods/Betmma-mods
-	url = https://github.com/betmma/my_balatro_mods/
 [submodule "Mods/BetterIllusion"]
 	path = Mods/BetterIllusion
 	url = https://github.com/rileyinman/BetterIllusion
@@ -55,3 +52,6 @@
 [submodule "Mods/CardSleeves"]
 	path = Mods/CardSleeves
 	url = https://github.com/larswijn/CardSleeves
+[submodule "Mods/Betmma_mods"]
+	path = Mods/Betmma_mods
+	url = https://github.com/Dimserene/Betmma_mods
