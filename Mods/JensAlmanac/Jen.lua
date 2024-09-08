@@ -7,7 +7,7 @@
 --- PRIORITY: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 --- BADGE_COLOR: 3c3cff
 --- PREFIX: jen
---- VERSION: 0.0.6
+--- VERSION: 0.0.7
 --- DEPENDENCIES: [JenLib, Talisman>=2.0.0-beta6, Cryptid>=0.5.0~pre2, incantation>=0.5.0, Steamodded>=1.0.0~ALPHA-0828b]
 --- CONFLICTS: [fastsc]
 --- LOADER_VERSION_GEQ: 1.0.0
@@ -2439,7 +2439,7 @@ SMODS.Joker {
 					G.consumeables:emplace(soul)
 				return true end }))
 			end
-			return {calculated = true}
+			return nil, true
 		end
 	end
 }
@@ -2728,7 +2728,7 @@ SMODS.Joker {
 				card_eval_status_text(card, 'extra', nil, nil, nil, {message = haro_blurbs[math.random(#haro_blurbs)], colour = G.C.SECONDARY_SET.Tarot})
 				card:apply_cumulative_levels()
 			end
-			return {calculated = true}
+			return nil, true
 		end
 		if #SMODS.find_card('j_jen_suzaku') > 0 then
 			if context.cardarea == G.jokers and not context.before and not context.after then
@@ -2787,7 +2787,7 @@ SMODS.Joker {
 				card_eval_status_text(card, 'extra', nil, nil, nil, {message = suzaku_blurbs[math.random(#suzaku_blurbs)], colour = G.C.SECONDARY_SET.Spectral})
 				card:apply_cumulative_levels()
 			end
-			return {calculated = true}
+			return nil, true
 		end
 		if #SMODS.find_card('j_jen_haro') > 0 then
 			if context.cardarea == G.jokers and not context.before and not context.after then
@@ -2844,7 +2844,7 @@ SMODS.Joker {
 				card_eval_status_text(card, 'extra', nil, nil, nil, {message = aster_blurbs[math.random(#aster_blurbs)], colour = G.C.SECONDARY_SET.Planet})
 				card:apply_cumulative_levels()
 			end
-			return {calculated = true}
+			return nil, true
 		end
 	end
 }
@@ -2925,7 +2925,7 @@ SMODS.Joker {
 					return true end }))
 				return true end }))
 			end
-			return {calculated=true}
+			return nil, true
 		end
 	end
 }
@@ -3066,7 +3066,7 @@ SMODS.Joker {
 				end
 				if improved then
 					card_eval_status_text(card, 'extra', nil, nil, nil, {message = '^' .. tostring(card.ability.extra.em) .. ' Mult', colour = G.C.FILTER})
-					return {calculated = true}
+					return nil, true
 				end
 			end
 		end
@@ -4158,7 +4158,7 @@ SMODS.Joker {
 					context.card.created_from_joker = nil
 				end
 			end
-			return {calculated=true}
+			return nil, true
 		end
 	end
 }
@@ -4217,7 +4217,7 @@ SMODS.Joker {
 					context.card.created_from_joker = nil
 				end
 			end
-			return {calculated=true}
+			return nil, true
 		end
 	end
 }	
@@ -4315,7 +4315,7 @@ SMODS.Joker {
 							card.ability.extra.energy = card.ability.extra.energy - 1
 							card_status_text(card, card.ability.extra.energy .. '/' .. nyx_maxenergy, nil, 0.05*card.T.h, G.C.FILTER, 0.6, 0.6, nil, nil, 'bm', 'generic1')
 						end
-						return {calculated=true}
+						return nil, true
 					end
 				elseif noretriggers(context) then
 					card_status_text(card, 'No energy!', nil, 0.05*card.T.h, G.C.RED, 0.6, 0.6, nil, nil, 'bm', 'cancel')
@@ -4397,7 +4397,7 @@ SMODS.Joker {
 			if noretriggers(context) then
 				card:apply_cumulative_levels(get_lowest_level_hand())
 			end
-			return {calculated = true}
+			return nil, true
 		end
 	end
 }
@@ -4617,7 +4617,7 @@ SMODS.Joker {
 					card = card
 				}
 			else
-				return {calculated = true}
+				return nil, true
 			end
         end
 	end
@@ -4659,7 +4659,7 @@ SMODS.Joker {
 					card = card
 				}
 			else
-				return {calculated = true}
+				return nil, true
 			end
         end
 	end
@@ -5772,7 +5772,7 @@ if FusionJokers then
 						G.consumeables:emplace(soul)
 					return true end }))
 				end
-				return {calculated = true}
+				return nil, true
 			end
 		end
 	}
@@ -6394,7 +6394,7 @@ if FusionJokers then
 								card.ability.extra.energy = card.ability.extra.energy - 1
 								card_status_text(card, card.ability.extra.energy .. '/' .. nyx_maxenergy*3, nil, 0.05*card.T.h, G.C.FILTER, 0.6, 0.6, nil, nil, 'bm', 'generic1')
 							end
-							return {calculated=true}
+							return nil, true
 						end
 					elseif noretriggers(context) then
 						card_status_text(card, 'No energy!', nil, 0.05*card.T.h, G.C.RED, 0.6, 0.6, nil, nil, 'bm', 'cancel')
@@ -10441,23 +10441,4 @@ function CardArea:add_to_highlighted(card, silent)
 		end
 	end
 	athr(self,card,silent)
-end
-
---derived from Cryptid
-local cj = Card.calculate_joker --CJ? Ooohhhh, my DOG!!
-function Card:calculate_joker(context)
-    local ret = cj(self, context)
-    if ret and not context.megatrigger and not context.megatrigger_check and not context.retrigger_joker and not context.retrigger_joker_check then
-        if type(ret) ~= 'table' then ret = {joker_megarepetitions = {0}} end
-        ret.joker_megarepetitions = {0}
-        for i = 1, #G.jokers.cards do
-            local check = G.jokers.cards[i]:calculate_joker{megatrigger_check = true, other_card = self}
-            if type(check) == 'table' then 
-                ret.joker_megarepetitions[i] = check and check.megarepetitions and check or 0
-            else
-                ret.joker_megarepetitions[i] = 0
-            end
-        end
-    end
-    return ret
 end
