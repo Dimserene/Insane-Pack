@@ -55,3 +55,6 @@
 [submodule "Mods/Betmma_mods"]
 	path = Mods/Betmma_mods
 	url = https://github.com/betmma/my_balatro_mods
+[submodule "Mods/DeckSkinsPlus"]
+	path = Mods/DeckSkinsPlus
+	url = https://github.com/Dimserene/DeckSkinsPlus.git
