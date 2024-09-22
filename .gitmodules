@@ -58,3 +58,6 @@
 [submodule "Mods/DeckSkinsPlus"]
 	path = Mods/DeckSkinsPlus
 	url = https://github.com/Dimserene/DeckSkinsPlus.git
+[submodule "Mods/Aure-Spectral"]
+	path = Mods/Aure-Spectral
+	url = https://github.com/SDM0/Aure-Spectral
