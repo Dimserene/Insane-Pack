@@ -67,3 +67,12 @@
 [submodule "Mods/HandPreview"]
 	path = Mods/HandPreview
 	url = https://github.com/lshtech/Balatro-HandPreview
+[submodule "Mods/ModPackFixes"]
+	path = Mods/ModPackFixes
+	url = https://github.com/lshtech/ModPackFixes
+[submodule "Mods/DiscoveryManager"]
+	path = Mods/DiscoveryManager
+	url = https://github.com/lshtech/DiscoveryManager
+[submodule "Mods/HeyListen"]
+	path = Mods/HeyListen
+	url = https://github.com/SleepyG11/HeyListenBalatro
