@@ -4,9 +4,6 @@
 [submodule "Mods/Talisman"]
 	path = Mods/Talisman
 	url = https://github.com/Dimserene/Talisman
-[submodule "Mods/The-World-Ends-With-Jimbo"]
-	path = Mods/The-World-Ends-With-Jimbo
-	url = https://github.com/parchmentEngineer/The-World-Ends-With-Jimbo
 [submodule "Mods/Steamodded"]
 	path = Mods/Steamodded
 	url = https://github.com/Steamopollys/Steamodded
@@ -76,3 +73,6 @@
 [submodule "Mods/HeyListen"]
 	path = Mods/HeyListen
 	url = https://github.com/SleepyG11/HeyListenBalatro
+[submodule "Mods/The-World-Ends-With-Jimbo"]
+	path = Mods/The-World-Ends-With-Jimbo
+	url = https://github.com/Dimserene/The-World-Ends-With-Jimbo
