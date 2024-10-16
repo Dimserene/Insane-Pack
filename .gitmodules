@@ -73,3 +73,6 @@
 [submodule "Mods/The-World-Ends-With-Jimbo"]
 	path = Mods/The-World-Ends-With-Jimbo
 	url = https://github.com/Dimserene/The-World-Ends-With-Jimbo
+[submodule "Mods/Oiiman-s-Additions"]
+	path = Mods/Oiiman-s-Additions
+	url = https://github.com/lshtech/Oiiman-s-Additions
