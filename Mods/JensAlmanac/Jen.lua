@@ -575,6 +575,12 @@ end
 
 --CONSUMABLE TYPES
 
+SMODS.UndiscoveredSprite {
+    key = 'jen_tokens',
+    atlas = 'jen_jentokens',
+    pos = {x = 0, y = 0}
+}
+
 SMODS.ConsumableType {
 	key = 'jen_tokens',
 	collection_rows = {6, 6},
@@ -587,6 +593,12 @@ SMODS.ConsumableType {
 	shop_rate = 3
 }
 
+SMODS.UndiscoveredSprite {
+    key = 'jen_jokerability',
+    atlas = 'jen_jensaint',
+    pos = {x = 0, y = 0}
+}
+
 SMODS.ConsumableType {
 	key = 'jen_jokerability',
 	collection_rows = {4, 4},
@@ -597,6 +609,12 @@ SMODS.ConsumableType {
 		name = 'Joker Ability'
 	},
 	shop_rate = 0
+}
+
+SMODS.UndiscoveredSprite {
+    key = 'jen_exconsumable',
+    atlas = 'jen_jenexspectrals',
+    pos = {x = 0, y = 0}
 }
 
 SMODS.ConsumableType {
@@ -712,7 +730,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'dithered',
     config = {chips = -25, mult = 33},
@@ -741,7 +759,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'sharpened',
     config = {chips = 333, mult = -5},
@@ -771,7 +789,7 @@ SMODS.Edition({
         }
     },
     shader = "prismatic",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {x_mult = 15, x_chips = 5, p_dollars = 5},
 	sound = {
@@ -803,7 +821,7 @@ SMODS.Edition({
         }
     },
     shader = "ionized",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {chips = 2000, x_mult = 0.5},
 	sound = {
@@ -839,7 +857,7 @@ SMODS.Edition({
     shader = "misprint",
 	disable_base_shader = true,
 	no_shadow = true,
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {},
 	sound = {
@@ -903,7 +921,7 @@ SMODS.Edition({
 		end
 	end,
     shader = false,
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {twos_scored = 0},
 	sound = {
@@ -967,7 +985,7 @@ SMODS.Edition({
 		end
 	end,
     shader = false,
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {twos_scored = 0},
 	sound = {
@@ -996,7 +1014,7 @@ SMODS.Edition({
         }
     },
     shader = "blaze",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {retriggers = 5, chips = -5, mult = -1},
 	sound = {
@@ -1031,7 +1049,7 @@ SMODS.Edition({
     shader = "wavy",
 	disable_base_shader = true,
 	no_shadow = true,
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {retriggers = 30},
 	sound = {
@@ -1065,7 +1083,7 @@ SMODS.Edition({
         }
     },
     shader = "encoded",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {codes = 10},
 	sound = {
@@ -1100,7 +1118,7 @@ SMODS.Edition({
         }
     },
     shader = "diplopia",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {retriggers = 1},
 	sound = {
@@ -1133,7 +1151,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : knockback1{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'sequin',
     config = { chips = 25, mult = 2 },
@@ -1180,7 +1198,7 @@ SMODS.Edition({
         }
     },
     shader = "laminated",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {chips = 3, mult = 1},
 	sound = {
@@ -1211,7 +1229,7 @@ SMODS.Edition({
         }
     },
     shader = "laminated",
-    discovered = true,
+    discovered = false,
     unlocked = true,
 	disable_base_shader = true,
 	no_shadow = true,
@@ -1246,7 +1264,7 @@ SMODS.Edition({
         }
     },
     shader = "sepia",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {chips = 150, mult = 9},
 	sound = {
@@ -1278,7 +1296,7 @@ SMODS.Edition({
         }
     },
     shader = "ink",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = { chips = 200, mult = 10, x_mult = 2 },
 	sound = {
@@ -1308,7 +1326,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : knockback1{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'polygloss',
     config = { p_dollars = 3 },
@@ -1339,7 +1357,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : knockback1{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'gilded',
     config = { p_dollars = 20 },
@@ -1368,7 +1386,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'chromatic',
     config = { chips = 10, mult = 4 },
@@ -1396,7 +1414,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'watered',
     config = { retriggers = 2 },
@@ -1431,7 +1449,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
 	disable_base_shader = true,
 	no_shadow = true,
@@ -1463,7 +1481,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : stupxd{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'missingtexture',
     config = { x_mult = 25, p_dollars = -5 },
@@ -1493,7 +1511,7 @@ SMODS.Edition({
         }
     },
     shader = "bloodfoil",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {ee_chips = 1.2},
 	sound = {
@@ -1525,7 +1543,7 @@ SMODS.Edition({
         }
     },
     shader = "cosmic",
-    discovered = true,
+    discovered = false,
     unlocked = true,
     config = {ee_mult = 1.2},
 	sound = {
@@ -1557,7 +1575,7 @@ SMODS.Edition({
 			'{C:dark_edition,s:0.7,E:2}Shader by : knockback1{}'
         }
     },
-    discovered = true,
+    discovered = false,
     unlocked = true,
     shader = 'moire',
     config = { chips = math.pi*1e4, x_chips = math.pi*1e3, e_chips = math.pi*100, ee_chips = math.pi*10, eee_chips = math.pi, mult = math.pi*1e4, x_mult = math.pi*1e3, e_mult = math.pi*100, ee_mult = math.pi*10, eee_mult = math.pi },
@@ -2105,7 +2123,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2154,7 +2172,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2194,7 +2212,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2235,7 +2253,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2277,7 +2295,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2319,7 +2337,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2375,7 +2393,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2463,7 +2481,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2558,7 +2576,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2642,7 +2660,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2712,7 +2730,7 @@ SMODS.Joker {
 	cost = 15,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2771,7 +2789,7 @@ SMODS.Joker {
 	cost = 15,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2831,7 +2849,7 @@ SMODS.Joker {
 	cost = 15,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2892,7 +2910,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2947,7 +2965,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = twitch,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -2999,7 +3017,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3043,7 +3061,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3102,7 +3120,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3143,7 +3161,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3179,7 +3197,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3221,7 +3239,7 @@ SMODS.Joker {
 	rarity = 4,
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3268,7 +3286,7 @@ SMODS.Joker {
 	rarity = 4,
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3353,7 +3371,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3444,7 +3462,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = sevensins,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3479,12 +3497,15 @@ SMODS.Joker {
 local cuc = Card.use_consumeable
 
 function Card:use_consumeable(area, copier)
-	for k, v in ipairs(G.handlist) do
-		if math.ceil(G.GAME.hands[v].level) ~= G.GAME.hands[v].level then
-			level_up_hand(nil, v, true, math.ceil(G.GAME.hands[v].level) - G.GAME.hands[v].level)
-		end
-		if G.GAME.hands[v].level < 1 then
-			level_up_hand(nil, v, true, math.abs(G.GAME.hands[v].level) + 1)
+	if (next(find_joker('j_jen_suzaku')) and self.Set == 'Spectral') or 
+	(next(find_joker('j_jen_haro')) and self.Set == 'Tarot') then
+		for k, v in ipairs(G.handlist) do
+			if math.ceil(G.GAME.hands[v].level) ~= G.GAME.hands[v].level then
+				level_up_hand(nil, v, true, math.ceil(G.GAME.hands[v].level) - G.GAME.hands[v].level)
+			end
+			if G.GAME.hands[v].level < 1 then
+				level_up_hand(nil, v, true, math.abs(G.GAME.hands[v].level) + 1)
+			end
 		end
 	end
 	cuc(self, area, copier)
@@ -3554,7 +3575,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3600,7 +3621,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3658,7 +3679,7 @@ SMODS.Joker {
 	set_card_type_badge = gaming,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3695,7 +3716,7 @@ SMODS.Joker {
 	cost = 12,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3743,7 +3764,7 @@ SMODS.Consumable {
 	soul_pos = { x = 1, y = 0 },
 	cost = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	no_doe = true,
 	soul_rate = 0,
@@ -3797,7 +3818,7 @@ SMODS.Joker {
 	cost = 12,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3862,7 +3883,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3917,7 +3938,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -3956,7 +3977,7 @@ SMODS.Joker {
 	cost = 1,
 	rarity = 1,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4011,7 +4032,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4080,7 +4101,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4123,7 +4144,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4182,7 +4203,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4250,7 +4271,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = ritualistic,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4343,7 +4364,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4386,7 +4407,7 @@ SMODS.Joker {
 	cost = 12,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4418,7 +4439,7 @@ SMODS.Joker {
 	cost = 12,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4455,7 +4476,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	immune_to_chemach = true,
 	blueprint_compat = false,
 	eternal_compat = true,
@@ -4599,7 +4620,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	immune_to_chemach = true,
 	blueprint_compat = true,
 	eternal_compat = true,
@@ -4638,7 +4659,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	immune_to_chemach = true,
 	blueprint_compat = true,
 	eternal_compat = true,
@@ -4683,7 +4704,7 @@ SMODS.Joker {
 	cost = 12,
 	rarity = 'cry_epic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	immune_to_chemach = true,
 	blueprint_compat = false,
 	eternal_compat = true,
@@ -4738,7 +4759,7 @@ SMODS.Joker {
 	rarity = 6,
 	set_card_type_badge = transcendent,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	immune_to_chemach = true,
 	blueprint_compat = true,
@@ -4801,7 +4822,7 @@ SMODS.Joker {
 	cost = 20,
 	rarity = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	immune_to_chemach = true,
 	blueprint_compat = false,
 	eternal_compat = true,
@@ -4832,7 +4853,7 @@ SMODS.Consumable {
 	soul_pos = { x = 1, y = 0 },
 	cost = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	no_doe = true,
 	soul_rate = 0,
@@ -4943,7 +4964,7 @@ SMODS.Joker {
 	set_card_type_badge = junk,
 	no_doe = true,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -4978,7 +4999,7 @@ SMODS.Joker {
 	no_doe = true,
 	set_card_type_badge = transcendent,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -5042,7 +5063,7 @@ SMODS.Joker {
 	rarity = 'cry_exotic',
 	set_card_type_badge = ritualistic,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = false,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -5099,7 +5120,7 @@ SMODS.Joker {
 	cost = 50,
 	rarity = 'cry_exotic',
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	blueprint_compat = true,
 	eternal_compat = true,
 	perishable_compat = false,
@@ -5141,7 +5162,7 @@ if FusionJokers then
 		cost = 3,
 		rarity = 3,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = false,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5188,7 +5209,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5280,7 +5301,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5372,7 +5393,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5463,7 +5484,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5544,7 +5565,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5628,7 +5649,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5707,7 +5728,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -5798,7 +5819,7 @@ if FusionJokers then
 		soul_pos = { x = 1, y = 0, extra = { x = 2, y = 0 }},
 		cost = 15,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		hidden = true,
 		no_doe = true,
 		soul_rate = 0,
@@ -5932,7 +5953,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -6001,7 +6022,7 @@ if FusionJokers then
 		soul_pos = { x = 1, y = 0, extra = { x = 2, y = 0 }},
 		cost = 15,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		hidden = true,
 		no_doe = true,
 		soul_rate = 0,
@@ -6137,7 +6158,7 @@ if FusionJokers then
 		cost = 125,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = true,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -6195,7 +6216,7 @@ if FusionJokers then
 		soul_pos = { x = 1, y = 0, extra = { x = 2, y = 0 }},
 		cost = 15,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		hidden = true,
 		no_doe = true,
 		soul_rate = 0,
@@ -6328,7 +6349,7 @@ if FusionJokers then
 		rarity = 6,
 		set_card_type_badge = transcendent,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		no_doe = true,
 		blueprint_compat = true,
 		eternal_compat = true,
@@ -6424,7 +6445,7 @@ if FusionJokers then
 		cost = 5e5,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = false,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -6451,7 +6472,7 @@ if FusionJokers then
 		cost = 5e8,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = false,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -6479,7 +6500,7 @@ if FusionJokers then
 		cost = 6.66e66,
 		rarity = 6,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		blueprint_compat = false,
 		eternal_compat = true,
 		perishable_compat = false,
@@ -6831,7 +6852,7 @@ for k, v in pairs(supported_tags) do
 		pos = {x = v[3], y = v[4]},
 		cost = v[5],
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		atlas = 'jentokens',
 		can_stack = true,
 		can_divide = true,
@@ -6876,7 +6897,7 @@ SMODS.Consumable {
 	pos = { x = 9, y = 2 },
 	cost = 50,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.001,
 	atlas = 'jenrtarots',
@@ -7049,7 +7070,7 @@ for k, v in ipairs(enhancereversetarots) do
 		cost = 13,
 		aurinko = true,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		hidden = true,
 		soul_rate = 0.002,
 		atlas = 'jenrtarots',
@@ -7080,7 +7101,7 @@ SMODS.Consumable {
 	pos = { x = 7, y = 2 },
 	cost = 13,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7118,7 +7139,7 @@ SMODS.Consumable {
 	pos = { x = 5, y = 2 },
 	cost = 13,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7183,7 +7204,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 2 },
 	cost = 30,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7220,7 +7241,7 @@ SMODS.Consumable {
 	pos = { x = 9, y = 1 },
 	cost = 25,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7268,7 +7289,7 @@ SMODS.Consumable {
 	config = {extra = {increase = 1}},
 	cost = 20,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7305,7 +7326,7 @@ SMODS.Consumable {
 	pos = { x = 7, y = 1 },
 	cost = 15,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7369,7 +7390,7 @@ SMODS.Consumable {
 	pos = { x = 6, y = 1 },
 	cost = 10,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7411,7 +7432,7 @@ SMODS.Consumable {
 	pos = { x = 5, y = 1 },
 	cost = 30,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7476,7 +7497,7 @@ for kk, vv in pairs(suitreversetarots) do
 		pos = vv.p,
 		cost = 30,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		hidden = true,
 		soul_rate = 0.002,
 		atlas = 'jenrtarots',
@@ -7547,7 +7568,7 @@ SMODS.Consumable {
 	pos = { x = 9, y = 0 },
 	cost = 13,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7590,7 +7611,7 @@ if (SMODS.Mods.aurinko or {}).can_load then
 		pos = { x = 7, y = 0 },
 		cost = 40,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		hidden = true,
 		soul_rate = 0.002,
 		atlas = 'jenrtarots',
@@ -7632,7 +7653,7 @@ SMODS.Consumable {
 	pos = { x = 6, y = 0 },
 	cost = 18,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7669,7 +7690,7 @@ SMODS.Consumable {
 	pos = { x = 5, y = 0 },
 	cost = 13,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7715,7 +7736,7 @@ SMODS.Consumable {
 	pos = { x = 4, y = 0 },
 	cost = 15,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.002,
 	atlas = 'jenrtarots',
@@ -7776,7 +7797,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 4 },
 	cost = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
 	can_use = function(self, card)
 		return abletouseconsumables() and #((G.hand or {}).cards or {}) > 0
@@ -7841,7 +7862,7 @@ SMODS.Consumable {
 	pos = { x = 1, y = 4 },
 	cost = 5,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {math.min(100, center.ability.extra.destruction * 100), math.ceil(#(G.playing_cards or {}) * center.ability.extra.destruction), center.ability.extra.slots}}
@@ -7900,7 +7921,7 @@ SMODS.Consumable {
 	pos = { x = 2, y = 4 },
 	cost = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {center.ability.extra.spectrals}}
@@ -7955,7 +7976,7 @@ SMODS.Consumable {
 	pos = { x = 3, y = 4 },
 	cost = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {center.ability.extra.phantoms}}
@@ -8017,7 +8038,7 @@ SMODS.Consumable {
 	pos = { x = 4, y = 4 },
 	cost = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {center.ability.extra.mischief}}
@@ -8127,7 +8148,7 @@ SMODS.Consumable {
 	pos = { x = 5, y = 4 },
 	cost = 15,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
 	hidden = true,
 	soul_rate = 0.02,
@@ -8163,7 +8184,7 @@ SMODS.Consumable {
 	pos = { x = 6, y = 4 },
 	cost = 15,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
 	hidden = true,
 	soul_rate = 0.02,
@@ -8199,7 +8220,7 @@ SMODS.Consumable {
 	pos = { x = 7, y = 4 },
 	cost = 20,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
 	hidden = true,
 	soul_rate = 0.02,
@@ -8237,7 +8258,7 @@ SMODS.Consumable {
 	pos = { x = 8, y = 4 },
 	cost = 20,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
 	hidden = true,
 	soul_rate = 0.02,
@@ -8273,7 +8294,7 @@ SMODS.Consumable {
 	pos = { x = 9, y = 4 },
 	cost = 12,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.02,
 	atlas = 'jenacc',
@@ -8373,7 +8394,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 0 },
 	cost = 15,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenhoxxes',
     loc_vars = function(self, info_queue, center)
         return {vars = {G.GAME.probabilities.normal, get_favourite_hand()}}
@@ -8578,7 +8599,7 @@ SMODS.Consumable {
 	pos = { x = 9, y = 4 },
 	cost = 12,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	hidden = true,
 	soul_rate = 0.02,
 	atlas = 'jenacc',
@@ -8625,7 +8646,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 2 },
 	cost = 3,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {(((center or {}).ability or {}).extra or {}).levels or 2}}
@@ -8672,7 +8693,7 @@ SMODS.Consumable {
 	pos = { x = 1, y = 2 },
 	cost = 3,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {(((center or {}).ability or {}).extra or {}).levels or 3, (((center or {}).ability or {}).extra or {}).downgrades or 1}}
@@ -8740,7 +8761,7 @@ SMODS.Consumable {
 	cost = 3,
 	aurinko = true,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {(((center or {}).ability or {}).extra or {}).planets or 2}}
@@ -8812,7 +8833,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 0 },
 	cost = 4,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {((center or {}).ability or {}).max_highlighted or 2}}
@@ -8855,7 +8876,7 @@ SMODS.Consumable {
 	pos = { x = 1, y = 0 },
 	cost = 5,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {((center or {}).ability or {}).max_highlighted or 5,((center or {}).ability or {}).payout or 6}}
@@ -8908,7 +8929,7 @@ SMODS.Consumable {
 	pos = { x = 2, y = 0 },
 	cost = 3,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {((center or {}).ability or {}).max_highlighted or 1}}
@@ -8942,7 +8963,7 @@ SMODS.Consumable {
 	pos = { x = 3, y = 0 },
 	cost = 3,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {((center or {}).ability or {}).targets or 4}}
@@ -9057,7 +9078,7 @@ SMODS.Consumable {
 	pos = { x = 0, y = 1 },
 	cost = 3,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {jokerinatarot_blurbs[math.random(#jokerinatarot_blurbs)]}}
@@ -9103,7 +9124,7 @@ SMODS.Consumable {
 	cost = 3,
 	aurinko = true,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {(((center or {}).ability or {}).extra or {}).extraconsumables or 1}}
@@ -9168,7 +9189,7 @@ SMODS.Consumable {
 	cost = 3,
 	aurinko = true,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {(((center or {}).ability or {}).extra or {}).levels or 1, get_favourite_hand()}}
@@ -9208,7 +9229,7 @@ SMODS.Consumable {
 	cost = 3,
 	aurinko = true,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	atlas = 'jenacc',
     loc_vars = function(self, info_queue, center)
         return {vars = {(((center or {}).ability or {}).extra or {}).down or -1, (((center or {}).ability or {}).extra or {}).up or 2}}
@@ -9401,7 +9422,7 @@ for k, v in pairs(explanets) do
 		no_doe = true,
 		aurinko = true,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		soul_rate = 0,
 		atlas = 'jenexplanets',
 		hidden = true,
@@ -9499,7 +9520,7 @@ end
 		soul_rate = 0,
 		no_doe = true,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		atlas = 'jenexplanets',
 		hidden = true,
 		can_stack = true,
@@ -9603,7 +9624,7 @@ SMODS.Consumable {
 	cost = 20,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9660,7 +9681,7 @@ SMODS.Consumable {
 	cost = 20,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9696,7 +9717,7 @@ SMODS.Consumable {
 	cost = 20,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9779,7 +9800,7 @@ for k, v in pairs(exsealcards) do
 		cost = 20,
 		soul_rate = 0,
 		unlocked = true,
-		discovered = true,
+		discovered = false,
 		no_doe = true,
 		hidden = true,
 		atlas = 'jenexspectrals',
@@ -9816,7 +9837,7 @@ SMODS.Consumable {
 	cost = 100,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9848,7 +9869,7 @@ SMODS.Consumable {
 	cost = 100,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9882,7 +9903,7 @@ SMODS.Consumable {
 	cost = 80,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9913,7 +9934,7 @@ SMODS.Consumable {
 	cost = 150,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -9973,7 +9994,7 @@ SMODS.Consumable {
 	cost = 200,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -10020,7 +10041,7 @@ SMODS.Consumable {
 	cost = 175,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -10069,7 +10090,7 @@ SMODS.Consumable {
 	cost = 175,
 	soul_rate = 0,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -10122,7 +10143,7 @@ SMODS.Consumable {
 	soul_rate = 0,
 	cost = 175,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	hidden = true,
 	atlas = 'jenexspectrals',
@@ -10173,7 +10194,7 @@ SMODS.Consumable {
 	soul_rate = 0,
 	hidden = true,
 	unlocked = true,
-	discovered = true,
+	discovered = false,
 	no_doe = true,
 	atlas = 'jenexspectrals',
 	can_use = function(self, card)
