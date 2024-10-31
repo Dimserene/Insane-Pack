@@ -52,9 +52,6 @@
 [submodule "Mods/DeckSkinsPlus"]
 	path = Mods/DeckSkinsPlus
 	url = https://github.com/Dimserene/DeckSkinsPlus.git
-[submodule "Mods/Aure-Spectral"]
-	path = Mods/Aure-Spectral
-	url = https://github.com/SDM0/Aure-Spectral
 [submodule "Mods/TooManyJokers"]
 	path = Mods/TooManyJokers
 	url = https://github.com/cg-223/toomanyjokers
@@ -79,3 +76,15 @@
 [submodule "Mods/Oiiman-s-Additions"]
 	path = Mods/Oiiman-s-Additions
 	url = https://github.com/Dimserene/Oiiman-s-Additions
+[submodule "Mods/Aure-Spectral"]
+	path = Mods/Aure-Spectral
+	url = https://github.com/Eremel/Aure-Spectral/
+[submodule "Mods/Malverk"]
+	path = Mods/Malverk
+	url = https://github.com/Eremel/Malverk
+[submodule "Mods/Luna-s-Enhancements"]
+	path = Mods/Luna-s-Enhancements
+	url = https://github.com/Eremel/Luna-s-Enhancements/
+[submodule "Mods/Potatro"]
+	path = Mods/Potatro
+	url = https://github.com/balt-dev/potatro/
