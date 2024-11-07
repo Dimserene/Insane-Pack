@@ -85,3 +85,9 @@
 [submodule "Mods/Potatro"]
 	path = Mods/Potatro
 	url = https://github.com/balt-dev/potatro/
+[submodule "Mods/BlackSeal"]
+	path = Mods/BlackSeal
+	url = https://github.com/lshtech/BlackSeal
+[submodule "Mods/Multipack"]
+	path = Mods/Multipack
+	url = https://github.com/snowylight/Multipack
