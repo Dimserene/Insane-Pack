@@ -25,9 +25,6 @@
 [submodule "Mods/BetterIllusion"]
 	path = Mods/BetterIllusion
 	url = https://github.com/rileyinman/BetterIllusion
-[submodule "Mods/BonusBlinds"]
-	path = Mods/BonusBlinds
-	url = https://github.com/Dimserene/BonusBlinds
 [submodule "Mods/Cartomancer"]
 	path = Mods/Cartomancer
 	url = https://github.com/stupxd/Cartomancer
@@ -76,12 +73,6 @@
 [submodule "Mods/Aure-Spectral"]
 	path = Mods/Aure-Spectral
 	url = https://github.com/Eremel/Aure-Spectral/
-[submodule "Mods/Malverk"]
-	path = Mods/Malverk
-	url = https://github.com/Eremel/Malverk
-[submodule "Mods/Luna-s-Enhancements"]
-	path = Mods/Luna-s-Enhancements
-	url = https://github.com/Eremel/Luna-s-Enhancements/
 [submodule "Mods/Potatro"]
 	path = Mods/Potatro
 	url = https://github.com/balt-dev/potatro/
