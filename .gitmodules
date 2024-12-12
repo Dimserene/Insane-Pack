@@ -70,9 +70,6 @@
 [submodule "Mods/Oiiman-s-Additions"]
 	path = Mods/Oiiman-s-Additions
 	url = https://github.com/Dimserene/Oiiman-s-Additions
-[submodule "Mods/Aure-Spectral"]
-	path = Mods/Aure-Spectral
-	url = https://github.com/Eremel/Aure-Spectral/
 [submodule "Mods/Potatro"]
 	path = Mods/Potatro
 	url = https://github.com/balt-dev/potatro/
